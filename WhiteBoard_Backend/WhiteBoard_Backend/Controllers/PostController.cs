@@ -19,17 +19,18 @@ namespace WhiteBoard_Backend.Controllers
         private IQuotePostRepository _quotePostRepository;
         private ICommentRepository _commentRepository;
         private IUserRepository _userRepository;
+        private IPostRepository _postRepository;
 
-        public PostController(IImagePostRepository imagePostRepository, IVideoPostRepository videoPostRepository, IQuotePostRepository quotePostRepository, ICommentRepository commentRepository, IUserRepository userRepository)
+        public PostController(IImagePostRepository imagePostRepository, IVideoPostRepository videoPostRepository, IQuotePostRepository quotePostRepository, ICommentRepository commentRepository, IUserRepository userRepository, IPostRepository postRepository)
         {
             _imagePostRepository = imagePostRepository;
             _videoPostRepository = videoPostRepository;
             _quotePostRepository = quotePostRepository;
             _userRepository = _userRepository;
             _commentRepository = commentRepository;
+            _postRepository = postRepository;
         }
-
-
+        
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PostThreadDto>>> Get(int videoCap, int imageCap, int quoteCap)
         {
@@ -48,10 +49,9 @@ namespace WhiteBoard_Backend.Controllers
         
         
         [HttpGet("{id}")]
-        public async Task<ActionResult<PostThreadDto>> Get(long id, PostType type)
+        public async Task<ActionResult<PostThreadDto>> Get(long id)
         {
-            var repo = GetConcreteRepoFromType(type);
-            var postThread = await repo.ReadAsync(id);
+            var postThread = await _postRepository.ReadAsync(id);
 
             if (postThread == null)
             {

@@ -10,7 +10,7 @@ using WhiteBoard_Backend.Models;
 namespace WhiteBoard_Backend.Migrations
 {
     [DbContext(typeof(WhiteBoardContext))]
-    [Migration("20200813045805_initial")]
+    [Migration("20200813064428_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

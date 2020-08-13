@@ -30,6 +30,13 @@ namespace WhiteBoard_Backend
             services.AddTransient<IImagePostRepository, ImagePostRepository>();
             services.AddTransient<IVideoPostRepository, VideoPostRepository>();
             services.AddTransient<IQuotePostRepository, QuotePostRepository>();
+            services.AddTransient<ICommentRepository, CommentRepository>();
+            services.AddTransient<IPostRepository, PostRepository>();
+            
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             services.AddControllers();
 

@@ -34,7 +34,7 @@ namespace WhiteBoard_Backend.Models.Repos
 
         public async Task<PostThreadDto> ReadAsync(long postId)
         {
-            var videoPost = (VideoPost) await _context.Posts.FindAsync(postId);
+            var videoPost = await _context.Posts.FindAsync(postId);
             
             if (videoPost == null) return null;
 

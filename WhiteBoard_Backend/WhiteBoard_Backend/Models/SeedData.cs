@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
@@ -75,6 +76,7 @@ namespace WhiteBoard_Backend.Models
                 var comment1 = new Comment()
                 {
                     UserId = 1,
+                    User = user1,
                     PostId = 1,
                     Body = "You are so right!"
                 };
@@ -84,15 +86,19 @@ namespace WhiteBoard_Backend.Models
                 var comment2 = new Comment()
                 {
                     UserId = 2,
+                    User = user2,
                     PostId = 2,
                     Body = "Lovely Video! So motivating :) "
                 };
                 
                 videoPost.Comments.Add(comment2);
+
+                Console.WriteLine("DB is being updated");
                 
                 var comment3 = new Comment()
                 {
                     UserId = 2,
+                    User = user2,
                     PostId = 2,
                     Body = "What a strategy!"
                 };

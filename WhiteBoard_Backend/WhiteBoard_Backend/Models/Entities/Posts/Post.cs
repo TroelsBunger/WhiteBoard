@@ -16,6 +16,11 @@ namespace WhiteBoard_Backend.Models.Entities.Posts
         public DateTime CreatedTime { get; set; } = DateTime.Now;
         public int Likes { get; set; }
         public ICollection<Comment> Comments { get; set; }
+
+        protected Post()
+        {
+            Comments = new List<Comment>();
+        }
         
     }
 }

@@ -11,7 +11,6 @@ namespace WhiteBoard_Backend.Models.Repos
         Task<PostThreadDto> ReadAsync(long postId);
         Task<bool> DeleteAsync(long postId);
         Task<IEnumerable<PostThreadDto>> GetPostsWithCap(int cap);
-
     }
 
     public interface IImagePostRepository : IPostRepository

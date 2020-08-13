@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using WhiteBoard_Backend.Models.Entities.Comments;
@@ -95,12 +96,36 @@ namespace WhiteBoard_Backend.Models
             };
         }
 
+        public static PostThreadDto ToPostThreadDto(this Post post)
+        {
+            PostThreadDto dto = null;
+            
+            if (post is VideoPost vp)
+            {
+                dto = vp.ToPostThreadDto();
+            }
+
+            if (post is ImagePost ip)
+            {
+                dto = ip.ToPostThreadDto();
+                
+            }
+            
+            if (post is QuotePost qp)
+            {
+                dto = qp.ToPostThreadDto();
+                
+            }
+
+            return dto;
+        }
+
         public static PostThreadDto ToPostThreadDto(this ImagePost imagePost)
         {
             var threadDto = new PostThreadDto()
             {
                 Id = imagePost.Id,
-                CreatedBy = imagePost.User.ToDto(),
+                CreatedBy = imagePost.User?.ToDto(),
                 UserId = imagePost.Id,
                 CreatedTime = imagePost.CreatedTime,
                 Likes = imagePost.Likes,
@@ -118,7 +143,7 @@ namespace WhiteBoard_Backend.Models
             var threadDto = new PostThreadDto()
             {
                 Id = videoPost.Id,
-                CreatedBy = videoPost.User.ToDto(),
+                CreatedBy = videoPost.User?.ToDto(),
                 UserId = videoPost.Id,
                 CreatedTime = videoPost.CreatedTime,
                 Likes = videoPost.Likes,
@@ -136,7 +161,7 @@ namespace WhiteBoard_Backend.Models
             var threadDto = new PostThreadDto()
             {
                 Id = qPost.Id,
-                CreatedBy = qPost.User.ToDto(),
+                CreatedBy = qPost.User?.ToDto(),
                 UserId = qPost.Id,
                 CreatedTime = qPost.CreatedTime,
                 Likes = qPost.Likes,
